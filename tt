@@ -1,0 +1,17 @@
+#!/bin/bash
+while :
+do
+loc="/TT-D/TT.txt"
+[ ! -e "/TT-D" ] && mkdir /TT-D &> /dev/null
+[ ! -e "$loc" ] && touch $loc &> /dev/null
+name=Neo		#自定义用户昵称
+#cat $loc | tail -5	#显示最后5行聊天记录,以防漏读
+
+read -p "请输入要发送的消息:" ff
+echo "
+$(date)
+$name: $ff"  >>  $loc
+scp -P $2 $loc $1:$loc &> /dev/null
+# && echo 发送完成 || echo 发送未完成
+clear all
+done
